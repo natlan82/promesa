@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
-<title>Kool Crackers · promēsa</title>
-<meta name="description" content="Kool Crackers for Panini: packaging design and a four-flavour colour system by promēsa.">
+<title>Koul Crackers · promēsa</title>
+<meta name="description" content="Koul Crackers for Panini: packaging design and a four-flavour colour system by promēsa.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Figtree:wght@400;500;600&display=swap">
@@ -30,7 +30,7 @@
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;overflow-x:hidden}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--paper)}
-img{max-width:100%;display:block}
+img{max-width:100%;height:auto;display:block}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--saffron);outline-offset:3px;border-radius:4px}
 h1,h2,h3{font-family:var(--display);font-weight:800;line-height:.95;letter-spacing:-.03em;margin:0;text-wrap:balance}
@@ -106,7 +106,8 @@ p{margin:0}
 .outro p{color:var(--muted);margin-top:18px;max-width:42ch}
 .outro .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
 .btn.ghost{background:none;color:var(--ink)}
-.logo-card{background:#fff;border-radius:24px;border:1px solid var(--line);overflow:hidden}
+.logo-card{background:#fff;border-radius:24px;border:1px solid var(--line);overflow:hidden;aspect-ratio:3/2;display:grid;place-items:center}
+.logo-card img{width:100%;height:100%;object-fit:contain}
 @media (max-width:820px){.outro .grid{grid-template-columns:1fr}}
 
 footer{border-top:1px solid var(--line);padding-block:28px;font-size:14px;color:var(--muted)}
@@ -128,49 +129,49 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   <div class="wrap">
     <a class="back" href="../index.html#work">← All work</a>
     <div class="intro-grid">
-      <h1><span>Kool</span><span class="k">Crackers</span></h1>
+      <h1><span>Koul</span><span class="k">Crackers</span></h1>
       <dl class="facts">
         <div><dt>Client</dt><dd>Panini</dd></div>
         <div><dt>Work</dt><dd>Packaging design, flavour colour system, key visuals</dd></div>
         <div><dt>Range</dt><dd>Κλασικά, Μεσογειακά, Barbeque, 4 Τυριά</dd></div>
       </dl>
     </div>
-    <p class="lead">One cracker, four moods. Each flavour gets its own colour and its own hero ingredient, so the range reads from across the aisle and every pack still belongs to the same family.</p>
+    <p class="lead">Crackers made from handmade Thessaloniki koulouri. One cracker, four moods. Each flavour gets its own colour and its own hero ingredient, so the range reads from across the aisle and every pack still belongs to the same family.</p>
     <div class="swatches" aria-label="Flavour colours"><i style="background:var(--classic)"></i><i style="background:var(--med)"></i><i style="background:var(--bbq)"></i><i style="background:var(--cheese)"></i></div>
   </div>
 </section>
 
 <section class="lineup">
-  <figure><img id="lineup" src="../assets/work/panini-kool/10.webp" alt="The four Kool Crackers packs side by side on red, green, yellow and teal" width="1600" height="1030"></figure>
+  <figure><img id="lineup" src="../assets/work/panini-kool/10.webp" alt="The four Koul Crackers packs side by side on red, green, yellow and teal" width="1600" height="1030"></figure>
 </section>
 
 <section class="flavours">
   <article class="fl classic">
     <span class="word" aria-hidden="true">ΚΛΑΣΙΚΑ</span>
     <div class="wrap inner">
-      <div class="txt"><span class="no">Flavour 1 of 4</span><h2>Κλασικά</h2><span class="en">Classic, sea salt</span><p>The base of the range. A clean teal and a scoop of salt flakes set the tone for every other flavour.</p></div>
-      <div class="shots"><div class="key"><img src="../assets/work/panini-kool/02.webp" alt="Key visual with sea salt flakes on teal" loading="lazy" width="1600" height="1067"></div><div class="pack"><img src="../assets/work/panini-kool/03.webp" alt="Kool Crackers classic pack on teal" loading="lazy" width="1600" height="1067"></div></div>
+      <div class="txt"><span class="no">Flavour 1 of 4</span><h2>Κλασικά</h2><span class="en">Classic</span><p>The base of the range. A clean teal and a simple hero ingredient set the tone for every other flavour.</p></div>
+      <div class="shots"><div class="key"><img src="../assets/work/panini-kool/02.webp" alt="Key visual with sea salt flakes on teal" loading="lazy" width="1600" height="1067"></div><div class="pack"><img src="../assets/work/panini-kool/03.webp" alt="Koul Crackers classic pack on teal" loading="lazy" width="1600" height="1067"></div></div>
     </div>
   </article>
   <article class="fl med">
     <span class="word" aria-hidden="true">ΜΕΣΟΓΕΙΑΚΑ</span>
     <div class="wrap inner">
-      <div class="txt"><span class="no">Flavour 2 of 4</span><h2>Μεσογειακά</h2><span class="en">Mediterranean herbs</span><p>Olive green and a burst of dried oregano. The herb dust is the hero, the pack keeps the same layout.</p></div>
-      <div class="shots"><div class="key"><img src="../assets/work/panini-kool/04.webp" alt="Key visual with Mediterranean herbs on olive green" loading="lazy" width="1600" height="1067"></div><div class="pack"><img src="../assets/work/panini-kool/05.webp" alt="Kool Crackers Mediterranean pack on green" loading="lazy" width="1600" height="1067"></div></div>
+      <div class="txt"><span class="no">Flavour 2 of 4</span><h2>Μεσογειακά</h2><span class="en">Mediterranean</span><p>Olive green and a burst of herbs. The herb dust is the hero, the pack keeps the same layout.</p></div>
+      <div class="shots"><div class="key"><img src="../assets/work/panini-kool/04.webp" alt="Key visual with Mediterranean herbs on olive green" loading="lazy" width="1600" height="1067"></div><div class="pack"><img src="../assets/work/panini-kool/05.webp" alt="Koul Crackers Mediterranean pack on green" loading="lazy" width="1600" height="1067"></div></div>
     </div>
   </article>
   <article class="fl bbq">
     <span class="word" aria-hidden="true">BARBEQUE</span>
     <div class="wrap inner">
-      <div class="txt"><span class="no">Flavour 3 of 4</span><h2>Barbeque</h2><span class="en">Smoky paprika</span><p>The loudest of the four. Deep red and a cloud of paprika make it the easiest one to spot on the shelf.</p></div>
-      <div class="shots"><div class="key"><img src="../assets/work/panini-kool/06.webp" alt="Key visual with paprika powder on red" loading="lazy" width="1600" height="1067"></div><div class="pack"><img src="../assets/work/panini-kool/07.webp" alt="Kool Crackers Barbeque pack on red" loading="lazy" width="1600" height="1067"></div></div>
+      <div class="txt"><span class="no">Flavour 3 of 4</span><h2>Barbeque</h2><span class="en">Barbeque</span><p>The loudest of the four. Deep red and a cloud of spice make it the easiest one to spot on the shelf.</p></div>
+      <div class="shots"><div class="key"><img src="../assets/work/panini-kool/06.webp" alt="Key visual with paprika powder on red" loading="lazy" width="1600" height="1067"></div><div class="pack"><img src="../assets/work/panini-kool/07.webp" alt="Koul Crackers Barbeque pack on red" loading="lazy" width="1600" height="1067"></div></div>
     </div>
   </article>
   <article class="fl cheese">
     <span class="word" aria-hidden="true">4 ΤΥΡΙΑ</span>
     <div class="wrap inner">
       <div class="txt"><span class="no">Flavour 4 of 4</span><h2>4 Τυριά</h2><span class="en">Four cheese</span><p>Warm yellow and a wedge of cheese. It closes the range with the friendliest colour of the set.</p></div>
-      <div class="shots"><div class="key"><img src="../assets/work/panini-kool/08.webp" alt="Key visual with a cheese wedge on yellow" loading="lazy" width="1600" height="1067"></div><div class="pack"><img src="../assets/work/panini-kool/09.webp" alt="Kool Crackers four cheese pack on yellow" loading="lazy" width="1600" height="1067"></div></div>
+      <div class="shots"><div class="key"><img src="../assets/work/panini-kool/08.webp" alt="Key visual with a cheese wedge on yellow" loading="lazy" width="1600" height="1067"></div><div class="pack"><img src="../assets/work/panini-kool/09.webp" alt="Koul Crackers four cheese pack on yellow" loading="lazy" width="1600" height="1067"></div></div>
     </div>
   </article>
 </section>
@@ -182,7 +183,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <p>We build the strategy, the identity and the packaging, then take it to fairs, shelves and screens.</p>
       <div class="ctas"><a class="btn" href="../index.html#contact">Start a project</a><a class="btn ghost" href="../index.html#work">See more work</a></div>
     </div>
-    <div class="logo-card"><img src="../assets/work/panini-kool/01.webp" alt="Kool Crackers logo by Panini" loading="lazy" width="1600" height="1067"></div>
+    <div class="logo-card"><img src="../assets/work/panini-kool/01.webp" alt="Koul Crackers logo by Panini" loading="lazy" width="1600" height="1067"></div>
   </div>
 </section>
 </main>
