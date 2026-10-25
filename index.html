@@ -1,0 +1,533 @@
+<title>Promesa Concept</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="promēsa: food strategy and communication. Brand strategy, packaging, activation and EU promotion programmes for Greek food and beverage producers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Figtree:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout: market-label poster. Huge stacked hero type with produce drifting around it,
+   a pinned horizontal run of service "labels", a scrubbed process rail, work wall, EU band, two offices. */
+:root{
+  --paper:#F5F6EE;      /* page ground, faint olive bias */
+  --ink:#14281F;        /* deep forest ink */
+  --muted:#56665C;      /* secondary text */
+  --line:#D6DBCB;       /* hairlines */
+  --saffron:#F2B33D;    /* the one bold accent */
+  --leaf:#3F7A4E;       /* produce green */
+  --tomato:#D9553B;     /* produce red, illustration only */
+  --panel:#EAEDDF;      /* raised surface */
+  --on-accent:#14281F;
+  --display:"Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
+  --body:"Figtree", "Segoe UI", system-ui, sans-serif;
+  --gutter:max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r:max(16px, env(safe-area-inset-right, 0px));
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0F1D17; --ink:#ECEFE3; --muted:#A3B0A6; --line:#2A3B33;
+    --saffron:#F4BB4D; --leaf:#6DAA7B; --tomato:#E8735A; --panel:#172A21; --on-accent:#14281F;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0F1D17; --ink:#ECEFE3; --muted:#A3B0A6; --line:#2A3B33;
+  --saffron:#F4BB4D; --leaf:#6DAA7B; --tomato:#E8735A; --panel:#172A21; --on-accent:#14281F;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--paper)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--saffron);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--display);line-height:1;text-wrap:balance;margin:0;font-weight:800;letter-spacing:-.02em}
+p{margin:0}
+.wrap{max-width:1240px;margin:0 auto;padding-left:var(--gutter);padding-right:var(--gutter-r)}
+
+/* NAV */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-block:14px}
+.mark{font-family:var(--display);font-weight:800;font-size:28px;letter-spacing:-.03em;text-decoration:none;line-height:1}
+.mark small{display:block;font-family:var(--body);font-weight:500;font-size:11px;letter-spacing:.06em;color:var(--muted);margin-top:2px}
+.links{display:flex;gap:28px;list-style:none;margin:0;padding:0}
+.links a{text-decoration:none;font-weight:500;font-size:15px;position:relative}
+.links a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;background:var(--saffron);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.links a:hover::after{transform:scaleX(1)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px;text-decoration:none;padding:12px 22px;border-radius:999px;border:2px solid var(--ink);transition:background .25s,color .25s,transform .25s;cursor:pointer;background:none;color:var(--ink);font-family:var(--body)}
+.btn.solid{background:var(--ink);color:var(--paper)}
+.btn:hover{background:var(--saffron);border-color:var(--saffron);color:var(--on-accent);transform:translateY(-2px)}
+@media (max-width:860px){.links{display:none}}
+
+/* HERO */
+.hero{position:relative;padding-block:clamp(48px,8vw,110px) clamp(40px,6vw,80px);overflow:hidden}
+.hero h1{font-size:clamp(52px,11.5vw,168px);font-weight:800;letter-spacing:-.045em;line-height:.88;position:relative;z-index:2}
+.hero h1 .ln{display:block;overflow:hidden;padding-bottom:.04em}
+.hero h1 .ln > span{display:inline-block}
+.hero h1 .thin{font-weight:400;letter-spacing:-.03em}
+.hero h1 .indent{padding-left:clamp(0px,14vw,220px)}
+.hero-foot{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:end;margin-top:clamp(32px,5vw,56px);position:relative;z-index:2}
+.hero-foot p{max-width:52ch;font-size:clamp(17px,1.6vw,20px);color:var(--muted)}
+.hero-foot p strong{color:var(--ink);font-weight:600}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+@media (max-width:700px){.hero-foot{grid-template-columns:1fr}}
+
+.produce{position:absolute;inset:0;pointer-events:none;z-index:1}
+.produce svg{position:absolute;overflow:visible}
+.p-olive{width:clamp(70px,9vw,130px);right:6%;top:8%}
+.p-wheat{width:clamp(48px,5vw,80px);right:30%;top:40%}
+.p-grape{width:clamp(80px,10vw,150px);right:4%;top:52%}
+.p-peach{width:clamp(70px,8vw,120px);right:22%;top:4%}
+.p-fish{width:clamp(80px,9vw,140px);left:52%;top:70%}
+@media (max-width:700px){
+  .hero{padding-top:28px}
+  .produce{position:relative;inset:auto;display:flex;justify-content:space-between;align-items:center;gap:8px;padding-left:var(--gutter);padding-right:var(--gutter-r);margin-bottom:28px;height:96px}
+  .produce svg{position:static}
+  .p-olive{width:17vw;max-width:72px}
+  .p-wheat{width:8vw;max-width:34px}
+  .p-grape{width:18vw;max-width:76px}
+  .p-peach{width:16vw;max-width:66px}
+  .p-fish{width:20vw;max-width:84px}
+}
+
+.badge{position:absolute;right:clamp(16px,6vw,90px);bottom:clamp(140px,16vw,230px);width:clamp(96px,11vw,150px);aspect-ratio:1;z-index:3}
+.badge svg{width:100%;height:100%;animation:spin 22s linear infinite}
+.badge .dot{position:absolute;inset:34%;border-radius:50%;background:var(--saffron)}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (max-width:700px){.badge{display:none}}
+
+/* MARQUEE */
+.marquee{background:var(--saffron);color:var(--on-accent);overflow:hidden;border-block:2px solid var(--ink);transform:rotate(-1.2deg);margin-block:10px 0;width:104%;margin-left:-2%}
+.track{display:flex;gap:40px;padding-block:16px;white-space:nowrap;width:max-content;animation:slide 38s linear infinite;font-family:var(--display);font-weight:600;font-size:clamp(20px,2.4vw,30px)}
+.track span{display:inline-flex;align-items:center;gap:40px}
+.track span::after{content:"";width:12px;height:12px;border-radius:50%;background:var(--on-accent)}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ABOUT */
+section{position:relative}
+.about{padding-block:clamp(80px,11vw,150px)}
+.about-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,6vw,90px);align-items:start}
+.about h2{font-size:clamp(36px,5vw,68px)}
+.about .lede{font-size:clamp(20px,2vw,25px);line-height:1.45;max-width:34ch}
+.about .body{display:grid;gap:20px;color:var(--muted);max-width:60ch}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:clamp(56px,7vw,90px);border-top:2px solid var(--ink)}
+.fact{padding:22px 20px 0 0;display:grid;gap:6px}
+.fact b{font-family:var(--display);font-size:clamp(40px,5vw,64px);line-height:1;letter-spacing:-.03em}
+.fact span{color:var(--muted);font-size:15px}
+@media (max-width:860px){.about-grid{grid-template-columns:1fr}.facts{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:28px}}
+
+/* SERVICES: horizontal pinned run */
+.services{background:var(--ink);color:var(--paper);overflow:hidden}
+.services .head{padding-block:clamp(70px,9vw,120px) 40px;display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
+.services h2{font-size:clamp(40px,6vw,88px);color:var(--paper)}
+.services .head p{max-width:40ch;color:color-mix(in srgb,var(--paper) 70%,var(--ink))}
+.rail{display:flex;gap:24px;padding-left:var(--gutter);padding-right:var(--gutter-r);padding-bottom:clamp(70px,9vw,120px);width:max-content}
+.label{width:min(84vw,460px);flex:none;border-radius:26px;padding:32px;display:grid;grid-template-rows:auto auto 1fr;gap:18px;min-height:520px;position:relative;overflow:hidden;color:var(--on-accent)}
+.label:nth-child(1){background:#F2B33D}
+.label:nth-child(2){background:#E9E3CF}
+.label:nth-child(3){background:#9CC79F}
+.label:nth-child(4){background:#F0A48F}
+.label:nth-child(5){background:#C9D7E8}
+.label h3{font-size:clamp(34px,3.6vw,46px);color:#14281F}
+.label .tag{font-size:14px;font-weight:600;color:#14281F;opacity:.75}
+.label ul{list-style:none;margin:0;padding:0;align-self:end;display:grid;border-top:1.5px solid #14281F}
+.label li{padding:9px 0;border-bottom:1px solid rgba(20,40,31,.25);font-weight:500;color:#14281F;display:flex;justify-content:space-between;gap:12px}
+.label .ico{position:absolute;right:-18px;top:-18px;width:150px;opacity:.9}
+@media (max-width:899px){
+  .rail{width:auto;flex-direction:column;gap:18px}
+  .label{width:100%;min-height:0;grid-template-rows:auto;gap:12px;padding:26px 24px 22px}
+  .label .ico{position:static;width:64px;height:64px;opacity:1;margin-bottom:6px}
+  .label h3{font-size:34px}
+  .label li{padding:8px 0;font-size:16px}
+}
+
+/* PROCESS */
+.process{padding-block:clamp(80px,11vw,150px)}
+.process h2{font-size:clamp(36px,5vw,68px);max-width:16ch}
+.process .intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:end}
+.process .intro p{color:var(--muted);max-width:50ch}
+.steps{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px;margin-top:64px;padding-top:44px}
+.steps .bar{position:absolute;top:10px;left:0;right:0;height:4px;background:var(--line);border-radius:4px;overflow:hidden}
+.steps .bar i{display:block;height:100%;width:100%;background:var(--saffron);transform-origin:left;transform:scaleX(1)}
+.step{display:grid;gap:10px;position:relative}
+.step::before{content:"";position:absolute;top:-42px;left:0;width:20px;height:20px;border-radius:50%;background:var(--paper);border:4px solid var(--ink)}
+.step .n{font-family:var(--display);font-weight:600;color:var(--muted);font-size:15px}
+.step h3{font-size:clamp(24px,2.4vw,32px)}
+.step p{color:var(--muted);font-size:15.5px}
+@media (max-width:860px){
+  .process .intro{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr;padding-top:0;padding-left:44px;gap:34px}
+  .steps .bar{top:0;bottom:0;left:8px;right:auto;width:4px;height:auto}
+  .steps .bar i{transform-origin:top}
+  .step::before{top:4px;left:-44px}
+}
+
+/* WORK */
+.work{padding-block:0 clamp(80px,11vw,150px)}
+.work .head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
+.work h2{font-size:clamp(36px,5vw,68px)}
+.work .head p{color:var(--muted);max-width:44ch}
+.wall{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,24px)}
+.tile{display:grid;grid-template-rows:1fr auto;gap:12px;text-decoration:none;color:var(--ink);min-width:0}
+.tile .pic{position:relative;overflow:hidden;border-radius:18px;background:var(--panel);aspect-ratio:4/3;max-width:100%}
+.tile.big{grid-column:span 2;grid-row:span 2}
+.tile.big .pic{aspect-ratio:auto;min-height:320px}
+.tile img{position:absolute;inset:-8% 0;width:100%;height:116%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.tile .cap{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.tile h3{font-size:clamp(20px,1.9vw,26px);letter-spacing:-.015em}
+.tile.big h3{font-size:clamp(26px,3vw,40px)}
+.tile .cat{font-size:14px;color:var(--muted);text-align:right}
+.tile .go{position:absolute;left:16px;bottom:16px;background:var(--saffron);color:var(--on-accent);font-weight:600;font-size:14px;padding:8px 16px;border-radius:999px;transform:translateY(8px);opacity:.0;transition:opacity .3s,transform .3s}
+.tile.soon .go{background:var(--paper);color:var(--ink)}
+.tile:hover img{transform:scale(1.06)}
+.tile:hover .go,.tile:focus-visible .go{opacity:1;transform:none}
+.tile.big .go{opacity:1;transform:none}
+@media (max-width:960px){.wall{grid-template-columns:repeat(2,minmax(0,1fr))}.tile.big{grid-row:span 1}.tile.big .pic{aspect-ratio:16/10;min-height:0}}
+@media (max-width:560px){.wall{grid-template-columns:1fr}.tile.big{grid-column:span 1}.tile .go{opacity:1;transform:none}}
+
+/* EU */
+.eu{background:var(--panel);border-block:1px solid var(--line);padding-block:clamp(80px,10vw,140px);overflow:hidden}
+.eu-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,6vw,80px);align-items:center}
+.eu h2{font-size:clamp(36px,5vw,68px)}
+.eu .reg{display:inline-block;margin-bottom:22px;font-weight:600;font-size:14px;padding:6px 14px;border-radius:999px;border:1.5px solid var(--ink)}
+.eu p{color:var(--muted);max-width:56ch;margin-top:22px}
+.eu ul{margin:28px 0 0;padding:0;list-style:none;display:grid;gap:0;border-top:1px solid var(--line)}
+.eu li{padding:13px 0;border-bottom:1px solid var(--line);font-weight:500}
+.ring{position:relative;width:min(100%,380px);aspect-ratio:1;margin-inline:auto}
+.ring svg{width:100%;height:100%}
+.ring .spin{transform-origin:200px 200px;animation:spin 60s linear infinite}
+@media (max-width:860px){.eu-grid{grid-template-columns:1fr}.ring{width:min(70%,300px)}}
+
+/* CONTACT */
+.contact{padding-block:clamp(80px,11vw,150px)}
+.contact h2{font-size:clamp(46px,8vw,120px);letter-spacing:-.045em;line-height:.9}
+.contact-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1.3fr);gap:clamp(24px,4vw,56px);margin-top:56px}
+.office{display:grid;gap:8px;align-content:start;border-top:2px solid var(--ink);padding-top:18px}
+.office h3{font-size:28px}
+.office p{color:var(--muted)}
+.office .ph{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums;user-select:all}
+form{display:grid;gap:14px;border-top:2px solid var(--ink);padding-top:18px}
+label{font-size:14px;font-weight:600;display:grid;gap:6px}
+input,textarea,select{font:inherit;font-size:16px;padding:12px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);width:100%}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--saffron)}
+.form-note{font-size:14px;color:var(--leaf);font-weight:600;min-height:1.4em}
+@media (max-width:960px){.contact-grid{grid-template-columns:1fr 1fr}form{grid-column:1/-1}}
+@media (max-width:560px){.contact-grid{grid-template-columns:1fr}}
+
+footer{border-top:1px solid var(--line);padding-block:28px;font-size:14px;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a{color:var(--muted)}
+
+@media (prefers-reduced-motion:reduce){
+  .badge svg,.track,.ring .spin{animation:none}
+  html{scroll-behavior:auto}
+}
+</style>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="mark" href="#top" aria-label="promēsa home">promēsa<small>food strategy + communication</small></a>
+    <ul class="links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#process">How we work</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#eu">EU programmes</a></li>
+    </ul>
+    <a class="btn solid" href="#contact">Let’s talk</a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="produce" aria-hidden="true">
+    <!-- olive branch -->
+    <svg class="p-olive" data-depth="0.6" viewBox="0 0 120 120"><path d="M20 100 C50 70 70 50 105 15" stroke="var(--leaf)" stroke-width="4" fill="none" stroke-linecap="round"/><ellipse cx="52" cy="62" rx="9" ry="22" transform="rotate(-50 52 62)" fill="var(--leaf)"/><ellipse cx="80" cy="36" rx="8" ry="20" transform="rotate(40 80 36)" fill="var(--leaf)"/><ellipse cx="38" cy="84" rx="12" ry="15" fill="var(--ink)"/><ellipse cx="70" cy="58" rx="11" ry="14" fill="var(--ink)"/></svg>
+    <!-- wheat -->
+    <svg class="p-wheat" data-depth="1.1" viewBox="0 0 60 160"><path d="M30 160 V40" stroke="var(--saffron)" stroke-width="4" stroke-linecap="round"/><g fill="var(--saffron)"><ellipse cx="30" cy="22" rx="7" ry="14"/><ellipse cx="19" cy="44" rx="7" ry="13" transform="rotate(-30 19 44)"/><ellipse cx="41" cy="44" rx="7" ry="13" transform="rotate(30 41 44)"/><ellipse cx="19" cy="68" rx="7" ry="13" transform="rotate(-30 19 68)"/><ellipse cx="41" cy="68" rx="7" ry="13" transform="rotate(30 41 68)"/><ellipse cx="19" cy="92" rx="7" ry="13" transform="rotate(-30 19 92)"/><ellipse cx="41" cy="92" rx="7" ry="13" transform="rotate(30 41 92)"/></g></svg>
+    <!-- grapes -->
+    <svg class="p-grape" data-depth="0.8" viewBox="0 0 140 160"><path d="M70 30 C70 15 80 6 95 4" stroke="var(--ink)" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M78 18 C100 10 120 22 118 40 C100 44 86 34 78 18Z" fill="var(--leaf)"/><g fill="#7B4B8E"><circle cx="50" cy="48" r="15"/><circle cx="80" cy="46" r="15"/><circle cx="108" cy="52" r="13"/><circle cx="36" cy="76" r="14"/><circle cx="66" cy="74" r="15"/><circle cx="95" cy="78" r="14"/><circle cx="52" cy="102" r="14"/><circle cx="82" cy="104" r="14"/><circle cx="66" cy="128" r="13"/></g></svg>
+    <!-- peach -->
+    <svg class="p-peach" data-depth="1.4" viewBox="0 0 120 120"><circle cx="58" cy="68" r="44" fill="var(--tomato)"/><path d="M58 26 C48 50 50 90 62 110" stroke="color-mix(in srgb,var(--tomato) 60%,var(--ink))" stroke-width="3" fill="none"/><path d="M60 26 C70 6 98 4 108 14 C96 30 74 34 60 26Z" fill="var(--leaf)"/></svg>
+    <!-- fish -->
+    <svg class="p-fish" data-depth="0.5" viewBox="0 0 160 80"><path d="M10 40 C40 5 100 5 130 40 C100 75 40 75 10 40Z" fill="none" stroke="var(--ink)" stroke-width="4"/><path d="M128 40 L156 18 L150 40 L156 62Z" fill="var(--ink)"/><circle cx="40" cy="36" r="5" fill="var(--ink)"/><path d="M70 22 C78 34 78 46 70 58" stroke="var(--ink)" stroke-width="3" fill="none"/></svg>
+  </div>
+
+  <div class="wrap">
+    <h1 aria-label="We promise, create and deliver value for food.">
+      <span class="ln"><span>We promise,</span></span>
+      <span class="ln indent"><span class="thin">create</span> <span>&amp;</span></span>
+      <span class="ln"><span>deliver value</span></span>
+      <span class="ln indent"><span class="thin">for food.</span></span>
+    </h1>
+    <div class="hero-foot">
+      <p><strong>Brand strategy and food marketing for Greek producers, cooperatives and retailers.</strong> We take your product from positioning and packaging to trade fair stands, shelves and screens, in Greece and abroad.</p>
+      <div class="ctas"><a class="btn solid" href="#contact">Start a project</a><a class="btn" href="#services">See services</a></div>
+    </div>
+  </div>
+
+  <div class="badge" aria-hidden="true">
+    <svg viewBox="0 0 200 200"><defs><path id="circ" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs><text font-family="Bricolage Grotesque, sans-serif" font-size="19" font-weight="600" letter-spacing="3.4" fill="var(--ink)"><textPath href="#circ">FIELD • SHELF • TABLE • WORLD • FIELD • SHELF • </textPath></text></svg>
+    <span class="dot"></span>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    <span>Brand strategy</span><span>Packaging design</span><span>Food styling</span><span>Photography &amp; video</span><span>Trade fairs</span><span>In-store promotion</span><span>Social media</span><span>EU promotion programmes</span>
+    <span>Brand strategy</span><span>Packaging design</span><span>Food styling</span><span>Photography &amp; video</span><span>Trade fairs</span><span>In-store promotion</span><span>Social media</span><span>EU promotion programmes</span>
+  </div>
+</div>
+
+<section class="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <h2>Food connects people. We connect food to markets.</h2>
+      <div class="body">
+        <p class="lede" style="color:var(--ink)">We are strategists, designers and project managers who work only with food and beverage brands.</p>
+        <p>We combine marketing know-how with a real understanding of how food is grown, made, sold and exported. That lets us build plans that work for the producer and the buyer at the same time.</p>
+        <p>Our focus is extroversion: helping your products reach new shelves in the EU and beyond, with a strategy written for your brand and not taken off a template.</p>
+      </div>
+    </div>
+    <div class="facts">
+      <div class="fact"><b data-count="360" data-suffix="°">360°</b><span>Integrated marketing, one team</span></div>
+      <div class="fact"><b>EU</b><span>Co-funded promotion programmes</span></div>
+      <div class="fact"><b>B2B + B2C</b><span>Trade, retail, HoReCa and digital</span></div>
+      <div class="fact"><b data-count="2">2</b><span>Offices, Thessaloniki and Veria</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="wrap head">
+    <h2>One stop,<br>from insight to shelf.</h2>
+    <p>Pick one service or hand us the whole launch. Each team below works from the same brief, so nothing gets lost between strategy and execution.</p>
+  </div>
+  <div class="rail">
+    <article class="label">
+      <svg class="ico" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="40" fill="none" stroke="#14281F" stroke-width="3"/><circle cx="50" cy="50" r="24" fill="none" stroke="#14281F" stroke-width="3"/><circle cx="50" cy="50" r="8" fill="#14281F"/></svg>
+      <span class="tag">Know where you are going</span>
+      <h3>Strategy</h3>
+      <ul><li>Brand strategy</li><li>Market research</li><li>Target group analysis</li><li>Trade-marketing management</li><li>Product launch strategy</li><li>Funding opportunities</li><li>Distribution channel strategy</li></ul>
+    </article>
+    <article class="label">
+      <svg class="ico" viewBox="0 0 100 100" aria-hidden="true"><rect x="22" y="14" width="56" height="74" rx="10" fill="none" stroke="#14281F" stroke-width="3"/><rect x="32" y="34" width="36" height="22" rx="4" fill="#F2B33D"/></svg>
+      <span class="tag">Make it look like it tastes</span>
+      <h3>Creative</h3>
+      <ul><li>Branding &amp; visual identity</li><li>Packaging design</li><li>Content creation</li><li>Campaign development</li><li>Photography &amp; video</li><li>Food styling</li><li>Web design</li></ul>
+    </article>
+    <article class="label">
+      <svg class="ico" viewBox="0 0 100 100" aria-hidden="true"><path d="M20 80 L50 20 L80 80Z" fill="none" stroke="#14281F" stroke-width="3"/><circle cx="50" cy="60" r="10" fill="#14281F"/></svg>
+      <span class="tag">Put it in people’s hands</span>
+      <h3>Activation &amp; PR</h3>
+      <ul><li>International trade fairs</li><li>B2B meetings &amp; events</li><li>B2C promotions</li><li>In-store promotion</li><li>Media planning</li><li>Social media</li></ul>
+    </article>
+    <article class="label">
+      <svg class="ico" viewBox="0 0 100 100" aria-hidden="true"><rect x="16" y="20" width="68" height="50" rx="6" fill="none" stroke="#14281F" stroke-width="3"/><path d="M28 58 L42 44 L54 52 L72 32" stroke="#14281F" stroke-width="3" fill="none"/><path d="M40 82 H60" stroke="#14281F" stroke-width="3"/></svg>
+      <span class="tag">Measure what sells</span>
+      <h3>Web &amp; Digital</h3>
+      <ul><li>Web design &amp; development</li><li>Performance marketing</li><li>Analytics &amp; reporting</li></ul>
+    </article>
+    <article class="label">
+      <svg class="ico" viewBox="0 0 100 100" aria-hidden="true"><g fill="#14281F"><circle cx="50" cy="16" r="5"/><circle cx="74" cy="26" r="5"/><circle cx="84" cy="50" r="5"/><circle cx="74" cy="74" r="5"/><circle cx="50" cy="84" r="5"/><circle cx="26" cy="74" r="5"/><circle cx="16" cy="50" r="5"/><circle cx="26" cy="26" r="5"/></g></svg>
+      <span class="tag">Grow with co-funding</span>
+      <h3>EU Projects</h3>
+      <ul><li>Programme management</li><li>360° B2B &amp; B2C activities</li><li>Finding the right funding</li><li>Liaison with authorities</li><li>Reporting &amp; ex-post evaluation</li></ul>
+    </article>
+  </div>
+</section>
+
+<section class="process" id="process">
+  <div class="wrap">
+    <div class="intro">
+      <h2>We work as part of your team.</h2>
+      <p>From the first market scan to the in-store promotion and the final report, one process and one point of contact.</p>
+    </div>
+    <div class="steps">
+      <div class="bar" aria-hidden="true"><i></i></div>
+      <div class="step"><span class="n">Step 1</span><h3>Discover</h3><p>Market scan, competitors, buyers and the story behind your product.</p></div>
+      <div class="step"><span class="n">Step 2</span><h3>Define</h3><p>Positioning, target markets, channels and a clear budget.</p></div>
+      <div class="step"><span class="n">Step 3</span><h3>Design</h3><p>Identity, packaging, content and the campaign itself.</p></div>
+      <div class="step"><span class="n">Step 4</span><h3>Deploy</h3><p>Fairs, B2B meetings, retail, media and social, run by us.</p></div>
+      <div class="step"><span class="n">Step 5</span><h3>Measure</h3><p>Results, reporting and what to change in the next round.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="work" id="work">
+  <div class="wrap">
+    <div class="head">
+      <h2>Brands we’ve helped grow</h2>
+      <p>Identities, packaging and websites created by our team, including work from our years as T-Squared.</p>
+    </div>
+    <div class="wall">
+      <a class="tile big" href="work/panini-kool.html"><div class="pic"><img src="assets/work/covers/panini-kool.webp" alt="Four Kool Crackers packs in red, green, yellow and teal" loading="lazy"><span class="go">View case study</span></div><div class="cap"><h3>Panini Kool Crackers</h3><span class="cat">Packaging</span></div></a>
+      <div class="tile soon" tabindex="0"><div class="pic"><img src="assets/work/covers/enormous.webp" alt="Enormous ice cream cone on a pink and blue rebranding poster" loading="lazy"><span class="go">Case study soon</span></div><div class="cap"><h3>Enormous</h3><span class="cat">Rebranding</span></div></div>
+      <div class="tile soon" tabindex="0"><div class="pic"><img src="assets/work/covers/aega.webp" alt="Aega coffee cups with goat illustration on mint background" loading="lazy"><span class="go">Case study soon</span></div><div class="cap"><h3>Aega Goat Milk</h3><span class="cat">Identity &amp; packaging</span></div></div>
+      <div class="tile soon" tabindex="0"><div class="pic"><img src="assets/work/covers/dacristo.webp" alt="Dacristo deli brand collage with meat, coffee and shop interior" loading="lazy"><span class="go">Case study soon</span></div><div class="cap"><h3>Dacristo</h3><span class="cat">Brand world</span></div></div>
+      <div class="tile soon" tabindex="0"><div class="pic"><img src="assets/work/covers/nagomi.webp" alt="Nagomi sushi wine bottle on deep blue background" loading="lazy"><span class="go">Case study soon</span></div><div class="cap"><h3>Nagomi Sushi Wine</h3><span class="cat">Wine label</span></div></div>
+      <div class="tile soon" tabindex="0"><div class="pic"><img src="assets/work/covers/marmeliza-fruit.webp" alt="Hand holding a Marmeliza jar among raspberries" loading="lazy"><span class="go">Case study soon</span></div><div class="cap"><h3>Marmeliza 100% Fruit</h3><span class="cat">Packaging</span></div></div>
+      <div class="tile soon" tabindex="0"><div class="pic"><img src="assets/work/covers/tessera.webp" alt="Tessera fine herbs packs with geometric patterns" loading="lazy"><span class="go">Case study soon</span></div><div class="cap"><h3>Tessera Fine Herbs</h3><span class="cat">Identity &amp; packaging</span></div></div>
+      <div class="tile soon" tabindex="0"><div class="pic"><img src="assets/work/covers/politikos.webp" alt="Politikos website screen with hay bales and info labels" loading="lazy"><span class="go">Case study soon</span></div><div class="cap"><h3>Politikos.com.gr</h3><span class="cat">Website</span></div></div>
+      <div class="tile soon" tabindex="0"><div class="pic"><img src="assets/work/covers/drosia.webp" alt="Νερά Εδέσσης water bottles" loading="lazy"><span class="go">Case study soon</span></div><div class="cap"><h3>Drosia Water</h3><span class="cat">Packaging</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="eu" id="eu">
+  <div class="wrap eu-grid">
+    <div>
+      <span class="reg">Regulation (EU) No 1144/2014</span>
+      <h2>EU co-funded promotion, managed end to end.</h2>
+      <p>The EU co-funds programmes that promote European agricultural and food products in the internal market and in third countries. We help you find the right call, write the proposal and run the whole programme.</p>
+      <ul>
+        <li>Finding the funding opportunity that fits you</li>
+        <li>Proposal, project management and implementation</li>
+        <li>B2B and B2C 360° activities in the EU and third countries</li>
+        <li>Communication with the relevant institutions</li>
+        <li>Reporting and ex-post evaluation</li>
+      </ul>
+    </div>
+    <div class="ring" aria-hidden="true">
+      <svg viewBox="0 0 400 400">
+        <circle cx="200" cy="200" r="150" fill="none" stroke="var(--line)" stroke-width="2"/>
+        <g class="spin" id="stars"></g>
+        <text x="200" y="192" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="56" fill="var(--ink)">EU</text>
+        <text x="200" y="228" text-anchor="middle" font-family="Figtree, sans-serif" font-weight="500" font-size="17" fill="var(--muted)">promotion programmes</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>Have a product<br>the world should taste?</h2>
+    <div class="contact-grid">
+      <div class="office">
+        <h3>Thessaloniki</h3>
+        <p>19 P.P. Germanou Str.</p>
+        <p class="ph">+30 2310 220150</p>
+        <p>Mon to Fri, 09:00 to 17:00</p>
+      </div>
+      <div class="office">
+        <h3>Veria</h3>
+        <p>4 Raktivan Sqr</p>
+        <p class="ph">+30 2331 064200</p>
+        <p class="ph">info@promesa.gr</p>
+      </div>
+      <form id="lead" novalidate>
+        <label for="f-name">Name<input id="f-name" name="name" autocomplete="name" required></label>
+        <label for="f-company">Company or brand<input id="f-company" name="company" autocomplete="organization"></label>
+        <label for="f-need">What do you need?
+          <select id="f-need" name="need">
+            <option>A new brand or packaging</option>
+            <option>A product launch</option>
+            <option>Trade fairs and B2B</option>
+            <option>An EU promotion programme</option>
+            <option>Something else</option>
+          </select>
+        </label>
+        <label for="f-email">Email<input id="f-email" name="email" type="email" autocomplete="email" required></label>
+        <button class="btn solid" type="submit">Send enquiry</button>
+        <p class="form-note" id="form-note" role="status"></p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 promēsa · food strategy + communication</span>
+    <span><a href="https://promesa.gr/peigrafi-drasis/">Co-funded action (ΕΣΠΑ)</a> · Concept build</span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  // EU stars
+  const g=document.getElementById('stars');
+  for(let i=0;i<12;i++){
+    const a=i/12*Math.PI*2, x=200+150*Math.cos(a), y=200+150*Math.sin(a);
+    const s=document.createElementNS('http://www.w3.org/2000/svg','path');
+    const pts=[];for(let k=0;k<10;k++){const r=k%2?5:13,t=k/10*Math.PI*2-Math.PI/2;pts.push((x+r*Math.cos(t)).toFixed(1)+','+(y+r*Math.sin(t)).toFixed(1))}
+    s.setAttribute('d','M'+pts.join('L')+'Z');s.setAttribute('fill','var(--saffron)');g.appendChild(s);
+  }
+
+  // Form (concept: not connected)
+  document.getElementById('lead').addEventListener('submit',e=>{
+    e.preventDefault();
+    const f=e.target, note=document.getElementById('form-note');
+    if(!f['f-name'].value.trim()||!f['f-email'].validity.valid||!f['f-email'].value){note.style.color='var(--tomato)';note.textContent='Add your name and a valid email so we can reply.';return;}
+    note.style.color='var(--leaf)';note.textContent='Thanks, '+f['f-name'].value.trim()+'. In this concept the form is not connected yet.';
+  });
+
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce||!window.gsap) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Hero load: lines rise in, produce drops in
+  gsap.from('.hero h1 .ln > span',{yPercent:110,duration:1.1,ease:'expo.out',stagger:.09,delay:.1});
+  gsap.from('.produce svg',{scale:0,rotate:-40,duration:1.2,ease:'back.out(1.7)',stagger:.08,delay:.5});
+
+  // Produce: idle bob + mouse parallax
+  document.querySelectorAll('.produce svg').forEach((el,i)=>{
+    gsap.to(el,{y:'+=14',rotate:i%2?6:-6,duration:2.6+i*.4,yoyo:true,repeat:-1,ease:'sine.inOut',delay:1.6});
+  });
+  const hero=document.querySelector('.hero');
+  hero.addEventListener('pointermove',e=>{
+    const r=hero.getBoundingClientRect(),dx=(e.clientX-r.left)/r.width-.5,dy=(e.clientY-r.top)/r.height-.5;
+    document.querySelectorAll('.produce svg').forEach(el=>{
+      const d=parseFloat(el.dataset.depth)||1;
+      gsap.to(el,{x:dx*50*d,xPercent:0,duration:.8,ease:'power3.out',overwrite:'auto'});
+    });
+  });
+  // Produce drift apart on scroll
+  gsap.to('.produce',{yPercent:-25,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+
+  // Marquee speeds with scroll direction
+  // Counters
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const end=+el.dataset.count, suf=el.dataset.suffix||'', o={v:0};
+    ScrollTrigger.create({trigger:el,start:'top 90%',once:true,onEnter:()=>gsap.fromTo(o,{v:0},{v:end,duration:1.6,ease:'power2.out',onUpdate:()=>el.textContent=Math.round(o.v)+suf})});
+  });
+
+  // Work images drift inside their frames
+  gsap.utils.toArray('.tile .pic img').forEach(img=>gsap.fromTo(img,{yPercent:-6},{yPercent:6,ease:'none',scrollTrigger:{trigger:img.parentNode,start:'top bottom',end:'bottom top',scrub:true}}));
+
+  const mm=gsap.matchMedia();
+  // Services: pinned horizontal run on wide screens
+  mm.add('(min-width: 900px)',()=>{
+    const rail=document.querySelector('.rail');
+    const dist=()=>rail.scrollWidth-window.innerWidth;
+    gsap.to(rail,{x:()=>-dist(),ease:'none',scrollTrigger:{trigger:'.services',start:'top top',end:()=>'+='+dist(),pin:true,scrub:1,invalidateOnRefresh:true}});
+    gsap.utils.toArray('.label').forEach((l,i)=>gsap.fromTo(l,{rotate:i%2?2.5:-2.5},{rotate:0,ease:'none',scrollTrigger:{trigger:'.services',start:'top top',end:()=>'+='+dist(),scrub:true}}));
+    gsap.fromTo('.steps .bar i',{scaleX:0},{scaleX:1,ease:'none',scrollTrigger:{trigger:'.steps',start:'top 80%',end:'bottom 55%',scrub:true}});
+  });
+  mm.add('(max-width: 899px)',()=>{
+    gsap.fromTo('.steps .bar i',{scaleY:0},{scaleY:1,ease:'none',scrollTrigger:{trigger:'.steps',start:'top 75%',end:'bottom 60%',scrub:true}});
+    // Service cards: swing in, list slides, icon spins with scroll
+    gsap.utils.toArray('.label').forEach((l,i)=>{
+      const dir=i%2?1:-1;
+      gsap.fromTo(l,{scale:.88,rotate:4*dir,y:60},{scale:1,rotate:0,y:0,ease:'none',scrollTrigger:{trigger:l,start:'top 100%',end:'top 55%',scrub:.6}});
+      gsap.fromTo(l.querySelector('h3'),{xPercent:-12*dir},{xPercent:0,ease:'none',scrollTrigger:{trigger:l,start:'top 95%',end:'top 45%',scrub:.6}});
+      gsap.fromTo(l.querySelectorAll('li'),{x:40*dir},{x:0,stagger:.12,ease:'none',scrollTrigger:{trigger:l,start:'top 85%',end:'top 25%',scrub:.6}});
+      gsap.to(l.querySelector('.ico'),{rotate:200*dir,ease:'none',scrollTrigger:{trigger:l,start:'top bottom',end:'bottom top',scrub:1}});
+    });
+  });
+  mm.add('(min-width: 900px)',()=>{
+    gsap.utils.toArray('.label .ico').forEach((ic,i)=>gsap.to(ic,{rotate:i%2?-160:160,ease:'none',scrollTrigger:{trigger:'.services',start:'top top',end:()=>'+='+(document.querySelector('.rail').scrollWidth-innerWidth),scrub:1}}));
+  });
+  // Tap / hover: card squeezes and icon pops
+  document.querySelectorAll('.label').forEach(l=>{
+    const ic=l.querySelector('.ico');
+    const pop=()=>{gsap.fromTo(l,{scale:.97},{scale:1,duration:.6,ease:'elastic.out(1,.4)',overwrite:'auto'});gsap.fromTo(ic,{scale:1.25},{scale:1,duration:.8,ease:'elastic.out(1,.35)'});};
+    l.addEventListener('pointerdown',pop);
+    l.addEventListener('mouseenter',pop);
+  });
+
+  // Contact headline: letters lean in with scroll
+  gsap.from('.contact h2',{xPercent:-8,ease:'none',scrollTrigger:{trigger:'.contact',start:'top bottom',end:'top 40%',scrub:true}});
+})();
+</script>

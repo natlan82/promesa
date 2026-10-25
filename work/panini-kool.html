@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Kool Crackers · promēsa</title>
+<meta name="description" content="Kool Crackers for Panini: packaging design and a four-flavour colour system by promēsa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Figtree:wght@400;500;600&display=swap">
+<style>
+/* Layout: case study. Title + facts, full-bleed lineup that settles on scroll,
+   then one colour band per flavour where the ingredient shot and the pack move against each other. */
+:root{
+  --paper:#F5F6EE; --ink:#14281F; --muted:#56665C; --line:#D6DBCB; --saffron:#F2B33D; --panel:#EAEDDF; --on-accent:#14281F;
+  --classic:#009CA0; --med:#739541; --bbq:#C23137; --cheese:#FEA800;
+  --display:"Bricolage Grotesque","Arial Narrow",system-ui,sans-serif;
+  --body:"Figtree","Segoe UI",system-ui,sans-serif;
+  --gutter:max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r:max(16px, env(safe-area-inset-right, 0px));
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--paper:#0F1D17;--ink:#ECEFE3;--muted:#A3B0A6;--line:#2A3B33;--saffron:#F4BB4D;--panel:#172A21;color-scheme:dark}
+}
+:root[data-theme="dark"]{--paper:#0F1D17;--ink:#ECEFE3;--muted:#A3B0A6;--line:#2A3B33;--saffron:#F4BB4D;--panel:#172A21;color-scheme:dark}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--paper)}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--saffron);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--display);font-weight:800;line-height:.95;letter-spacing:-.03em;margin:0;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:1240px;margin:0 auto;padding-left:var(--gutter);padding-right:var(--gutter-r)}
+
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:14px}
+.mark{font-family:var(--display);font-weight:800;font-size:28px;letter-spacing:-.03em;text-decoration:none;line-height:1}
+.mark small{display:block;font-family:var(--body);font-weight:500;font-size:11px;letter-spacing:.06em;color:var(--muted);margin-top:2px}
+.navr{display:flex;gap:18px;align-items:center}
+.navr a.txt{text-decoration:none;font-weight:500;font-size:15px}
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px;text-decoration:none;padding:12px 22px;border-radius:999px;border:2px solid var(--ink);background:var(--ink);color:var(--paper);transition:background .25s,color .25s,transform .25s}
+.btn:hover{background:var(--saffron);border-color:var(--saffron);color:var(--on-accent);transform:translateY(-2px)}
+@media (max-width:560px){.navr a.txt{display:none}}
+
+/* INTRO */
+.intro{padding-block:clamp(40px,7vw,96px) clamp(36px,5vw,64px)}
+.back{display:inline-block;margin-bottom:28px;font-weight:600;font-size:15px;text-decoration:none;color:var(--muted)}
+.back:hover{color:var(--ink)}
+.intro-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:end}
+.intro h1{font-size:clamp(64px,13vw,190px);letter-spacing:-.05em;line-height:.85}
+.intro h1 span{display:block}
+.intro h1 .k{color:var(--classic)}
+.facts{display:grid;gap:0;border-top:2px solid var(--ink)}
+.facts div{display:grid;grid-template-columns:110px minmax(0,1fr);gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.facts dt{color:var(--muted);font-size:15px}
+.facts dd{margin:0;font-weight:600}
+.lead{font-size:clamp(19px,1.9vw,24px);line-height:1.45;max-width:46ch;margin-top:clamp(28px,4vw,48px)}
+.swatches{display:flex;gap:8px;margin-top:24px}
+.swatches i{width:36px;height:36px;border-radius:50%;display:block}
+@media (max-width:820px){.intro-grid{grid-template-columns:1fr}}
+
+/* LINEUP */
+.lineup{overflow:hidden;padding-left:var(--gutter);padding-right:var(--gutter-r)}
+.lineup figure{margin:0 auto;max-width:1400px;border-radius:clamp(16px,2.4vw,32px);overflow:hidden}
+.lineup img{width:100%;height:auto;transform-origin:50% 60%}
+
+/* FLAVOURS */
+.flavours{margin-top:clamp(70px,10vw,140px)}
+.fl{position:relative;overflow:hidden;color:#fff;padding-block:clamp(70px,10vw,130px)}
+.fl.classic{background:var(--classic)}
+.fl.med{background:var(--med)}
+.fl.bbq{background:var(--bbq)}
+.fl.cheese{background:var(--cheese);color:#14281F}
+.fl .word{position:absolute;top:50%;left:0;white-space:nowrap;font-family:var(--display);font-weight:800;font-size:clamp(120px,24vw,360px);letter-spacing:-.05em;line-height:1;opacity:.14;transform:translateY(-50%);pointer-events:none}
+.fl .inner{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:clamp(28px,5vw,72px);align-items:center}
+.fl .txt{display:grid;gap:14px;align-content:start}
+.fl .no{font-family:var(--display);font-weight:600;font-size:15px;opacity:.8}
+.fl h2{font-size:clamp(48px,7vw,104px)}
+.fl .en{font-size:18px;font-weight:600;opacity:.85}
+.fl p{max-width:36ch;opacity:.92}
+.fl .shots{position:relative;padding-bottom:12%}
+.fl .key{border-radius:24px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(0,0,0,.45)}
+.fl .key img{width:100%;height:auto}
+.fl .pack{position:absolute;right:-4%;bottom:-6%;width:52%;border-radius:20px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,.5);border:6px solid rgba(255,255,255,.9)}
+.fl .pack img{width:100%;height:auto}
+.fl:nth-child(even) .inner{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)}
+.fl:nth-child(even) .txt{order:2}
+.fl:nth-child(even) .pack{right:auto;left:-4%}
+@media (max-width:820px){
+  .fl .inner,.fl:nth-child(even) .inner{grid-template-columns:1fr}
+  .fl:nth-child(even) .txt{order:0}
+  .fl .shots{padding-bottom:22%}
+  .fl .pack{width:58%;right:-2%;bottom:-4%}
+  .fl:nth-child(even) .pack{left:-2%}
+}
+
+/* OUTRO */
+.outro{padding-block:clamp(80px,11vw,150px)}
+.outro .grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:center}
+.outro h2{font-size:clamp(40px,6vw,84px)}
+.outro p{color:var(--muted);margin-top:18px;max-width:42ch}
+.outro .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn.ghost{background:none;color:var(--ink)}
+.logo-card{background:#fff;border-radius:24px;border:1px solid var(--line);overflow:hidden}
+@media (max-width:820px){.outro .grid{grid-template-columns:1fr}}
+
+footer{border-top:1px solid var(--line);padding-block:28px;font-size:14px;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="mark" href="../index.html" aria-label="promēsa home">promēsa<small>food strategy + communication</small></a>
+    <div class="navr"><a class="txt" href="../index.html#work">All work</a><a class="btn" href="../index.html#contact">Let’s talk</a></div>
+  </div>
+</header>
+
+<main>
+<section class="intro">
+  <div class="wrap">
+    <a class="back" href="../index.html#work">← All work</a>
+    <div class="intro-grid">
+      <h1><span>Kool</span><span class="k">Crackers</span></h1>
+      <dl class="facts">
+        <div><dt>Client</dt><dd>Panini</dd></div>
+        <div><dt>Work</dt><dd>Packaging design, flavour colour system, key visuals</dd></div>
+        <div><dt>Range</dt><dd>Κλασικά, Μεσογειακά, Barbeque, 4 Τυριά</dd></div>
+      </dl>
+    </div>
+    <p class="lead">One cracker, four moods. Each flavour gets its own colour and its own hero ingredient, so the range reads from across the aisle and every pack still belongs to the same family.</p>
+    <div class="swatches" aria-label="Flavour colours"><i style="background:var(--classic)"></i><i style="background:var(--med)"></i><i style="background:var(--bbq)"></i><i style="background:var(--cheese)"></i></div>
+  </div>
+</section>
+
+<section class="lineup">
+  <figure><img id="lineup" src="../assets/work/panini-kool/10.webp" alt="The four Kool Crackers packs side by side on red, green, yellow and teal" width="1600" height="1030"></figure>
+</section>
+
+<section class="flavours">
+  <article class="fl classic">
+    <span class="word" aria-hidden="true">ΚΛΑΣΙΚΑ</span>
+    <div class="wrap inner">
+      <div class="txt"><span class="no">Flavour 1 of 4</span><h2>Κλασικά</h2><span class="en">Classic, sea salt</span><p>The base of the range. A clean teal and a scoop of salt flakes set the tone for every other flavour.</p></div>
+      <div class="shots"><div class="key"><img src="../assets/work/panini-kool/02.webp" alt="Key visual with sea salt flakes on teal" loading="lazy" width="1600" height="1067"></div><div class="pack"><img src="../assets/work/panini-kool/03.webp" alt="Kool Crackers classic pack on teal" loading="lazy" width="1600" height="1067"></div></div>
+    </div>
+  </article>
+  <article class="fl med">
+    <span class="word" aria-hidden="true">ΜΕΣΟΓΕΙΑΚΑ</span>
+    <div class="wrap inner">
+      <div class="txt"><span class="no">Flavour 2 of 4</span><h2>Μεσογειακά</h2><span class="en">Mediterranean herbs</span><p>Olive green and a burst of dried oregano. The herb dust is the hero, the pack keeps the same layout.</p></div>
+      <div class="shots"><div class="key"><img src="../assets/work/panini-kool/04.webp" alt="Key visual with Mediterranean herbs on olive green" loading="lazy" width="1600" height="1067"></div><div class="pack"><img src="../assets/work/panini-kool/05.webp" alt="Kool Crackers Mediterranean pack on green" loading="lazy" width="1600" height="1067"></div></div>
+    </div>
+  </article>
+  <article class="fl bbq">
+    <span class="word" aria-hidden="true">BARBEQUE</span>
+    <div class="wrap inner">
+      <div class="txt"><span class="no">Flavour 3 of 4</span><h2>Barbeque</h2><span class="en">Smoky paprika</span><p>The loudest of the four. Deep red and a cloud of paprika make it the easiest one to spot on the shelf.</p></div>
+      <div class="shots"><div class="key"><img src="../assets/work/panini-kool/06.webp" alt="Key visual with paprika powder on red" loading="lazy" width="1600" height="1067"></div><div class="pack"><img src="../assets/work/panini-kool/07.webp" alt="Kool Crackers Barbeque pack on red" loading="lazy" width="1600" height="1067"></div></div>
+    </div>
+  </article>
+  <article class="fl cheese">
+    <span class="word" aria-hidden="true">4 ΤΥΡΙΑ</span>
+    <div class="wrap inner">
+      <div class="txt"><span class="no">Flavour 4 of 4</span><h2>4 Τυριά</h2><span class="en">Four cheese</span><p>Warm yellow and a wedge of cheese. It closes the range with the friendliest colour of the set.</p></div>
+      <div class="shots"><div class="key"><img src="../assets/work/panini-kool/08.webp" alt="Key visual with a cheese wedge on yellow" loading="lazy" width="1600" height="1067"></div><div class="pack"><img src="../assets/work/panini-kool/09.webp" alt="Kool Crackers four cheese pack on yellow" loading="lazy" width="1600" height="1067"></div></div>
+    </div>
+  </article>
+</section>
+
+<section class="outro">
+  <div class="wrap grid">
+    <div>
+      <h2>Launching a new range?</h2>
+      <p>We build the strategy, the identity and the packaging, then take it to fairs, shelves and screens.</p>
+      <div class="ctas"><a class="btn" href="../index.html#contact">Start a project</a><a class="btn ghost" href="../index.html#work">See more work</a></div>
+    </div>
+    <div class="logo-card"><img src="../assets/work/panini-kool/01.webp" alt="Kool Crackers logo by Panini" loading="lazy" width="1600" height="1067"></div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 promēsa · food strategy + communication</span><span>Concept build</span></div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches||!window.gsap) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Title rises in, swatches pop
+  gsap.from('.intro h1 span',{yPercent:60,rotate:3,duration:1,ease:'expo.out',stagger:.1});
+  gsap.from('.swatches i',{scale:0,duration:.7,ease:'back.out(2.2)',stagger:.08,delay:.4});
+
+  // Lineup settles from zoomed in
+  gsap.fromTo('#lineup',{scale:1.18},{scale:1,ease:'none',scrollTrigger:{trigger:'.lineup',start:'top 90%',end:'bottom 60%',scrub:true}});
+
+  // Each flavour: giant word slides, key visual and pack move against each other
+  gsap.utils.toArray('.fl').forEach((fl,i)=>{
+    const dir=i%2?1:-1;
+    const st={trigger:fl,start:'top bottom',end:'bottom top',scrub:true};
+    gsap.fromTo(fl.querySelector('.word'),{xPercent:dir>0?-30:5},{xPercent:dir>0?5:-30,ease:'none',scrollTrigger:st});
+    gsap.fromTo(fl.querySelector('.key'),{yPercent:10,scale:.94},{yPercent:-6,scale:1,ease:'none',scrollTrigger:st});
+    gsap.fromTo(fl.querySelector('.pack'),{yPercent:45,rotate:-10*dir},{yPercent:-12,rotate:4*dir,ease:'none',scrollTrigger:st});
+    gsap.fromTo(fl.querySelector('h2'),{xPercent:-8*dir},{xPercent:0,ease:'none',scrollTrigger:{trigger:fl,start:'top 90%',end:'top 35%',scrub:true}});
+  });
+
+  // Tap the pack for a little bounce
+  document.querySelectorAll('.fl .pack').forEach(p=>p.addEventListener('pointerdown',()=>gsap.fromTo(p,{scale:.92},{scale:1,duration:.8,ease:'elastic.out(1,.35)'})));
+})();
+</script>
+</body>
+</html>
